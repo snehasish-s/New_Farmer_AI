@@ -3,10 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Farm-AI | Smart Farming Solutions</title>
-    <!-- Bootstrap CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <title>Irrigation Planning | Farm-AI</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Slab:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -204,6 +201,7 @@
             padding: 0 2rem;
         }
 
+        /* Hero Section */
         .hero {
             text-align: center;
             padding: 4rem 0;
@@ -224,90 +222,156 @@
             color: var(--gray);
         }
 
-        .options {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            margin-top: 3rem;
-        }
-
-        .option-card {
+        /* Irrigation Form */
+        .irrigation-form {
             background: var(--white);
             border-radius: 12px;
-            overflow: hidden;
-            width: 300px;
+            padding: 2.5rem;
             box-shadow: var(--shadow);
-            transition: var(--transition);
-            position: relative;
-            transform-style: preserve-3d;
+            margin: 2rem 0;
         }
 
-        .option-card:hover {
-            transform: translateY(-10px) rotateY(5deg);
-            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+        .form-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary-dark);
         }
 
-        .option-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
             width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--primary), transparent);
-            opacity: 0;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
             transition: var(--transition);
-            z-index: -1;
         }
 
-        .option-card:hover::before {
-            opacity: 0.1;
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
         }
 
-        .card-header {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        .form-button {
+            display: block;
+            width: 100%;
+            background: var(--primary);
             color: var(--white);
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 1.5rem;
+        }
+
+        .form-button:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Results Section */
+        .results {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            margin: 2rem 0;
+            display: none;
+        }
+
+        .results.visible {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .results-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary-dark);
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .result-card {
+            background: var(--light);
+            border-radius: 8px;
             padding: 1.5rem;
             text-align: center;
         }
 
-        .card-body {
-            padding: 2rem;
-            text-align: center;
-        }
-
-        .card-body i {
-            font-size: 3rem;
+        .result-card i {
+            font-size: 2.5rem;
             color: var(--primary);
-            margin-bottom: 1.5rem;
-        }
-
-        .card-body h3 {
-            font-size: 1.5rem;
             margin-bottom: 1rem;
         }
 
-        .card-body p {
-            color: var(--gray);
-            margin-bottom: 1.5rem;
+        .result-card h4 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-dark);
         }
 
-        .card-button {
-            display: inline-block;
-            background: var(--primary);
+        .result-card p {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .schedule {
+            margin-top: 2rem;
+        }
+
+        .schedule h3 {
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+        }
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .schedule-table th,
+        .schedule-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .schedule-table th {
+            background-color: var(--primary);
             color: var(--white);
-            padding: 0.8rem 1.8rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: var(--transition);
-            border: 2px solid var(--primary);
         }
 
-        .card-button:hover {
-            background: transparent;
-            color: var(--primary);
+        .schedule-table tr:nth-child(even) {
+            background-color: rgba(76, 175, 80, 0.1);
         }
 
         /* Features Section */
@@ -361,97 +425,6 @@
         .feature-item h3 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
-        }
-
-        /* Stats Section */
-        .stats {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: var(--white);
-            padding: 4rem 2rem;
-            margin: 6rem 0;
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .stat-item {
-            padding: 1.5rem;
-        }
-
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        /* Testimonials */
-        .testimonials {
-            margin: 6rem 0;
-        }
-
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .testimonial-card {
-            background: var(--white);
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: var(--shadow);
-            position: relative;
-        }
-
-        .testimonial-card::before {
-            content: '"';
-            font-size: 5rem;
-            color: var(--primary);
-            opacity: 0.2;
-            position: absolute;
-            top: 10px;
-            left: 20px;
-            font-family: serif;
-        }
-
-        .testimonial-text {
-            margin-bottom: 1.5rem;
-            font-style: italic;
-            color: var(--gray);
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-weight: 600;
-        }
-
-        .author-details h4 {
-            font-size: 1.1rem;
-        }
-
-        .author-details p {
-            color: var(--gray);
-            font-size: 0.9rem;
         }
 
         /* Footer */
@@ -567,15 +540,6 @@
             }
         }
 
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-        }
-
         .animated {
             opacity: 0;
             transform: translateY(20px);
@@ -645,14 +609,16 @@
                 font-size: 2rem;
             }
             
-            .options {
-                flex-direction: column;
-                align-items: center;
+            .form-grid {
+                grid-template-columns: 1fr;
             }
             
-            .option-card {
-                width: 100%;
-                max-width: 350px;
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .schedule-table {
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -668,14 +634,14 @@
     <!-- Header Section -->
     <header>
         <div class="header-content">
-            <h1>Welcome to Farm-AI</h1>
-            <p>Your smart farming assistant!</p>
+            <h1>Irrigation Planning</h1>
+            <p>Optimize your water usage with AI-powered irrigation planning</p>
         </div>
         <div class="header-animation">
-            <i class="floating-icon fas fa-seedling" style="top: 20%; left: 10%; animation-delay: 0s;"></i>
-            <i class="floating-icon fas fa-tractor" style="top: 60%; left: 80%; animation-delay: 1s;"></i>
-            <i class="floating-icon fas fa-leaf" style="top: 40%; left: 70%; animation-delay: 2s;"></i>
-            <i class="floating-icon fas fa-apple-alt" style="top: 70%; left: 20%; animation-delay: 3s;"></i>
+            <i class="floating-icon fas fa-tint" style="top: 20%; left: 10%; animation-delay: 0s;"></i>
+            <i class="floating-icon fas fa-tint" style="top: 60%; left: 80%; animation-delay: 1s;"></i>
+            <i class="floating-icon fas fa-tint" style="top: 40%; left: 70%; animation-delay: 2s;"></i>
+            <i class="floating-icon fas fa-tint" style="top: 70%; left: 20%; animation-delay: 3s;"></i>
             <i class="floating-icon fas fa-cloud-rain" style="top: 30%; left: 50%; animation-delay: 4s;"></i>
         </div>
     </header>
@@ -688,10 +654,10 @@
                 <span>Farm-AI</span>
             </div>
             <div class="nav-links">
-                <a href="#">Home</a>
-                <a href="#">Features</a>
-                <a href="#">How It Works</a>
-                <a href="#">Testimonials</a>
+                <a href="{{ url_for('home') }}">Home</a>
+                <a href="{{ url_for('crophealth_page') }}">Crop Health</a>
+                <a href="{{ url_for('yieldprediction_page') }}">Yield Prediction</a>
+                <a href="#">Irrigation Planning</a>
                 <a href="#">Contact</a>
             </div>
         </div>
@@ -701,214 +667,159 @@
     <main>
         <!-- Hero Section -->
         <section class="hero">
-            <h2>Revolutionizing Agriculture with AI</h2>
-            <p>Farm-AI leverages cutting-edge artificial intelligence to help farmers optimize crop health, predict yields, and make data-driven decisions for sustainable farming practices.</p>
+            <h2>Smart Irrigation Planning</h2>
+            <p>Maximize your crop yield while minimizing water usage with our AI-powered irrigation planning system. Get personalized recommendations based on your specific farm conditions.</p>
+        </section>
+
+        <!-- Irrigation Form -->
+        <section class="irrigation-form">
+            <div class="form-title">
+                <h2>Enter Your Farm Details</h2>
+                <p>Provide information about your farm to get customized irrigation recommendations</p>
+            </div>
             
-            <div class="options">
-                <div class="option-card animated">
-                    <div class="card-header">
-                        <h3>Crop Health Prediction</h3>
+            <form id="irrigationForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="cropType">Crop Type</label>
+                        <select id="cropType" required>
+                            <option value="">Select Crop Type</option>
+                            <option value="wheat">Wheat</option>
+                            <option value="corn">Corn</option>
+                            <option value="rice">Rice</option>
+                            <option value="soybean">Soybean</option>
+                            <option value="cotton">Cotton</option>
+                            <option value="vegetables">Vegetables</option>
+                            <option value="fruits">Fruits</option>
+                        </select>
                     </div>
-                    <div class="card-body">
-                        <i class="fas fa-heartbeat"></i>
-                        <p>Get accurate predictions about your crop's health and receive recommendations for improvement.</p>
-                        <a href="{{ url_for('crophealth_page') }}" class="card-button">Analyze Now</a>
+                    
+                    <div class="form-group">
+                        <label for="soilType">Soil Type</label>
+                        <select id="soilType" required>
+                            <option value="">Select Soil Type</option>
+                            <option value="sandy">Sandy</option>
+                            <option value="loamy">Loamy</option>
+                            <option value="clay">Clay</option>
+                            <option value="silty">Silty</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="area">Farm Area (acres)</label>
+                        <input type="number" id="area" min="1" required placeholder="Enter area in acres">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="region">Region</label>
+                        <input type="text" id="region" required placeholder="Enter your region">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="irrigationSystem">Irrigation System</label>
+                        <select id="irrigationSystem" required>
+                            <option value="">Select Irrigation System</option>
+                            <option value="drip">Drip Irrigation</option>
+                            <option value="sprinkler">Sprinkler System</option>
+                            <option value="flood">Flood Irrigation</option>
+                            <option value="pivot">Center Pivot</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="waterSource">Water Source</label>
+                        <select id="waterSource" required>
+                            <option value="">Select Water Source</option>
+                            <option value="well">Well</option>
+                            <option value="river">River</option>
+                            <option value="canal">Canal</option>
+                            <option value="rainwater">Rainwater Harvesting</option>
+                        </select>
                     </div>
                 </div>
                 
-                <div class="option-card animated">
-                    <div class="card-header">
-                        <h3>Yield Prediction</h3>
-                    </div>
-                    <div class="card-body">
-                        <i class="fas fa-chart-line"></i>
-                        <p>Predict your farm's yield with advanced AI algorithms and plan your harvest efficiently.</p>
-                        <a href="{{ url_for('yieldprediction_page') }}" class="card-button">Predict Now</a>
-                    </div>
+                <button type="submit" class="form-button">Generate Irrigation Plan</button>
+            </form>
+        </section>
+
+        <!-- Results Section -->
+        <section class="results" id="resultsSection">
+            <div class="results-title">
+                <h2>Your Irrigation Plan</h2>
+                <p>Based on your farm details, here's your optimized irrigation schedule</p>
+            </div>
+            
+            <div class="results-grid">
+                <div class="result-card animated">
+                    <i class="fas fa-tint"></i>
+                    <h4>Water Required</h4>
+                    <p id="waterRequired">0</p>
+                    <span>liters per day</span>
                 </div>
+                
+                <div class="result-card animated">
+                    <i class="fas fa-clock"></i>
+                    <h4>Irrigation Frequency</h4>
+                    <p id="irrigationFrequency">0</p>
+                    <span>times per week</span>
+                </div>
+                
+                <div class="result-card animated">
+                    <i class="fas fa-bolt"></i>
+                    <h4>Estimated Savings</h4>
+                    <p id="waterSavings">0%</p>
+                    <span>compared to traditional methods</span>
+                </div>
+            </div>
+            
+            <div class="schedule">
+                <h3>Weekly Irrigation Schedule</h3>
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th>Day</th>
+                            <th>Time</th>
+                            <th>Duration</th>
+                            <th>Water Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody id="scheduleBody">
+                        <!-- Will be populated by JavaScript -->
+                    </tbody>
+                </table>
             </div>
         </section>
 
-        <!-- Irrigation Planning Section -->
-<section class="features">
-    <div class="section-title animated">
-        <h2>Irrigation Planning</h2>
-        <p>Optimize water usage for your crops with our smart irrigation solutions.</p>
-    </div>
-
-    <div class="feature-grid">
-        <div class="feature-item animated">
-            <div class="feature-icon">
-                <i class="fas fa-water"></i>
-            </div>
-            <h3>Efficient Water Management</h3>
-            <p>Save water while ensuring your crops get exactly what they need.</p>
-        </div>
-
-        <div class="feature-item animated">
-            <div class="feature-icon">
-                <i class="fas fa-tint"></i>
-            </div>
-            <h3>Smart Scheduling</h3>
-            <p>Automatic irrigation schedules based on crop type and weather conditions.</p>
-        </div>
-
-        <div class="feature-item animated">
-            <div class="feature-icon">
-                <i class="fas fa-seedling"></i>
-            </div>
-            <h3>Crop Health Support</h3>
-            <p>Integrate with our crop health monitoring to optimize watering.</p>
-        </div>
-    </div>
-
-    <!-- Button to go to irrigation page -->
-    <div class="text-center mt-6">
-        <a href="{{ url_for('irrigation_page') }}" class="btn btn-primary">
-            Plan Your Irrigation
-        </a>
-    </div>
-</section>
-
-
-       <!-- Real-Time Weather Section -->
-<section class="features">
-    <div class="section-title animated">
-        <h2>Current Weather</h2>
-        <p>Check the weather conditions for your farm location</p>
-    </div>
-
-    <div class="feature-grid">
-        <div class="feature-item animated">
-            <div class="feature-icon">
-                <i class="fas fa-cloud-sun"></i>
-            </div>
-            <h3>Weather Info</h3>
-            <p>Click the button below to see detailed weather for Bhubaneswar</p>
-
-            <!-- External Link to MSN Weather -->
-            <p>
-                <a href="https://www.msn.com/en-in/weather/forecast/in-Bhubaneshwar,India" 
-                   target="_blank" 
-                   style="display:inline-block; padding:10px 15px; background:#4CAF50; color:white; text-decoration:none; border-radius:5px;">
-                    View Weather on MSN
-                </a>
-            </p>
-        </div>
-    </div>
-</section>
-
-<!-- Include Font Awesome if not already -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-
-
-        <!-- Features Section -->
+        <!-- Benefits Section -->
         <section class="features">
             <div class="section-title animated">
-                <h2>Why Choose Farm-AI?</h2>
-                <p>Our advanced features help you maximize productivity and minimize risks</p>
+                <h2>Benefits of Smart Irrigation</h2>
+                <p>How our AI-powered irrigation planning helps your farm</p>
             </div>
             
             <div class="feature-grid">
                 <div class="feature-item animated">
                     <div class="feature-icon">
-                        <i class="fas fa-robot"></i>
+                        <i class="fas fa-tint-slash"></i>
                     </div>
-                    <h3>AI-Powered Analysis</h3>
-                    <p>Our advanced algorithms analyze crop data to provide actionable insights for improved yield.</p>
+                    <h3>Water Conservation</h3>
+                    <p>Reduce water usage by up to 30% with optimized irrigation schedules.</p>
                 </div>
                 
                 <div class="feature-item animated">
                     <div class="feature-icon">
-                        <i class="fas fa-cloud-sun-rain"></i>
+                        <i class="fas fa-money-bill-wave"></i>
                     </div>
-                    <h3>Weather Integration</h3>
-                    <p>Get accurate weather predictions tailored to your farm's location for better planning.</p>
+                    <h3>Cost Savings</h3>
+                    <p>Lower your water bills and energy costs with efficient irrigation.</p>
                 </div>
                 
                 <div class="feature-item animated">
                     <div class="feature-icon">
-                        <i class="fas fa-mobile-alt"></i>
+                        <i class="fas fa-seedling"></i>
                     </div>
-                    <h3>Mobile Accessibility</h3>
-                    <p>Access all features from your mobile device, even in remote farming locations.</p>
-                </div>
-            </div>
-        </section>
-
-        
-
-        <!-- Stats Section -->
-        <section class="stats">
-            <div class="stats-grid">
-                <div class="stat-item animated">
-                    <div class="stat-number" id="stat1">0</div>
-                    <div class="stat-label">Farms Using Our Technology</div>
-                </div>
-                
-                <div class="stat-item animated">
-                    <div class="stat-number" id="stat2">0</div>
-                    <div class="stat-label">Yield Increase on Average</div>
-                </div>
-                
-                <div class="stat-item animated">
-                    <div class="stat-number" id="stat3">0</div>
-                    <div class="stat-label">Acres Monitored</div>
-                </div>
-                
-                <div class="stat-item animated">
-                    <div class="stat-number" id="stat4">0</div>
-                    <div class="stat-label">Happy Farmers</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Testimonials Section -->
-        <section class="testimonials">
-            <div class="section-title animated">
-                <h2>What Farmers Say</h2>
-                <p>Hear from farmers who have transformed their operations with Farm-AI</p>
-            </div>
-            
-            <div class="testimonial-grid">
-                <div class="testimonial-card animated">
-                    <div class="testimonial-text">
-                        "Farm-AI has completely changed how I manage my crops. The yield predictions were within 2% of actual harvest!"
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">JD</div>
-                        <div class="author-details">
-                            <h4>John Doe</h4>
-                            <p>Corn Farmer, Iowa</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card animated">
-                    <div class="testimonial-text">
-                        "The crop health predictions helped me identify a disease outbreak early, saving me thousands of dollars."
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">SM</div>
-                        <div class="author-details">
-                            <h4>Sarah Miller</h4>
-                            <p>Vineyard Owner, California</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="testimonial-card animated">
-                    <div class="testimonial-text">
-                        "As a beginner farmer, Farm-AI gave me the confidence to make data-driven decisions. My yield increased by 22% in the first season!"
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">RJ</div>
-                        <div class="author-details">
-                            <h4>Robert Johnson</h4>
-                            <p>Organic Farmer, Oregon</p>
-                        </div>
-                    </div>
+                    <h3>Improved Yield</h3>
+                    <p>Optimal water delivery leads to healthier crops and higher yields.</p>
                 </div>
             </div>
         </section>
@@ -931,10 +842,10 @@
             <div class="footer-column">
                 <h3>Quick Links</h3>
                 <ul class="footer-links">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">How It Works</a></li>
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('crophealth_page') }}">Crop Health</a></li>
+                    <li><a href="{{ url_for('yieldprediction_page') }}">Yield Prediction</a></li>
+                    <li><a href="#">Irrigation Planning</a></li>
                     <li><a href="#">Contact</a></li>
                 </ul>
             </div>
@@ -942,11 +853,10 @@
             <div class="footer-column">
                 <h3>Services</h3>
                 <ul class="footer-links">
-                    <li><a href="#">Crop Health Prediction</a></li>
-                    <li><a href="#">Yield Prediction</a></li>
+                    <li><a href="{{ url_for('crophealth_page') }}">Crop Health Prediction</a></li>
+                    <li><a href="{{ url_for('yieldprediction_page') }}">Yield Prediction</a></li>
                     <li><a href="#">Soil Analysis</a></li>
-                    <li><a href="{{ url_for('irrigation_page') }}">Irrigation Planning</a></li>
-
+                    <li><a href="#">Irrigation Planning</a></li>
                     <li><a href="#">Pest Detection</a></li>
                 </ul>
             </div>
@@ -985,7 +895,7 @@
             });
             
             // Cursor hover effects
-            const hoverElements = document.querySelectorAll('a, button, .card-button, .option-card, .feature-item, .social-links a');
+            const hoverElements = document.querySelectorAll('a, button, .form-button, .feature-item, .social-links a, input, select, textarea');
             
             hoverElements.forEach(element => {
                 element.addEventListener('mouseenter', () => {
@@ -1054,41 +964,102 @@
                 observer.observe(element);
             });
             
-            // Animate stats counter
-            const stat1 = document.getElementById('stat1');
-            const stat2 = document.getElementById('stat2');
-            const stat3 = document.getElementById('stat3');
-            const stat4 = document.getElementById('stat4');
-            
-            const statsSection = document.querySelector('.stats');
-            
-            const statsObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        animateValue(stat1, 0, 1250, 2000);
-                        animateValue(stat2, 0, 27, 2000);
-                        animateValue(stat3, 0, 50000, 2000);
-                        animateValue(stat4, 0, 98, 2000);
-                        statsObserver.unobserve(entry.target);
-                    }
-                });
-            }, {
-                threshold: 0.5
+            // Form submission
+            document.getElementById('irrigationForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const cropType = document.getElementById('cropType').value;
+                const soilType = document.getElementById('soilType').value;
+                const area = parseInt(document.getElementById('area').value);
+                const region = document.getElementById('region').value;
+                const irrigationSystem = document.getElementById('irrigationSystem').value;
+                const waterSource = document.getElementById('waterSource').value;
+                
+                // Generate irrigation plan (simulated)
+                generateIrrigationPlan(cropType, soilType, area, region, irrigationSystem, waterSource);
+                
+                // Show results section
+                document.getElementById('resultsSection').classList.add('visible');
+                
+                // Scroll to results
+                document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
             });
             
-            statsObserver.observe(statsSection);
+            // Generate irrigation plan based on inputs
+            function generateIrrigationPlan(cropType, soilType, area, region, irrigationSystem, waterSource) {
+                // These are simulated values - in a real application, these would come from an AI model
+                const waterRequired = area * 1500; // Simulated calculation
+                const irrigationFrequency = getFrequencyByCrop(cropType);
+                const waterSavings = getSavingsBySystem(irrigationSystem);
+                
+                // Update results
+                document.getElementById('waterRequired').textContent = waterRequired.toLocaleString();
+                document.getElementById('irrigationFrequency').textContent = irrigationFrequency;
+                document.getElementById('waterSavings').textContent = waterSavings + '%';
+                
+                // Generate schedule
+                generateSchedule(irrigationFrequency, waterRequired);
+            }
             
-            function animateValue(element, start, end, duration) {
-                let startTimestamp = null;
-                const step = (timestamp) => {
-                    if (!startTimestamp) startTimestamp = timestamp;
-                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                    element.innerHTML = Math.floor(progress * (end - start) + start);
-                    if (progress < 1) {
-                        window.requestAnimationFrame(step);
-                    }
+            function getFrequencyByCrop(cropType) {
+                const frequencies = {
+                    'wheat': 3,
+                    'corn': 4,
+                    'rice': 7,
+                    'soybean': 3,
+                    'cotton': 4,
+                    'vegetables': 5,
+                    'fruits': 4
                 };
-                window.requestAnimationFrame(step);
+                return frequencies[cropType] || 3;
+            }
+            
+            function getSavingsBySystem(irrigationSystem) {
+                const savings = {
+                    'drip': 35,
+                    'sprinkler': 15,
+                    'flood': 0,
+                    'pivot': 20
+                };
+                return savings[irrigationSystem] || 0;
+            }
+            
+            function generateSchedule(frequency, waterRequired) {
+                const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+                const scheduleBody = document.getElementById('scheduleBody');
+                scheduleBody.innerHTML = '';
+                
+                const waterPerSession = Math.round(waterRequired / frequency);
+                
+                // Distribute irrigation days evenly
+                const irrigationDays = [];
+                const step = Math.floor(7 / frequency);
+                
+                for (let i = 0; i < frequency; i++) {
+                    let dayIndex = (i * step) % 7;
+                    irrigationDays.push(days[dayIndex]);
+                }
+                
+                // Create schedule rows
+                irrigationDays.forEach(day => {
+                    const row = document.createElement('tr');
+                    
+                    // Best time based on research (early morning)
+                    const time = '6:00 AM';
+                    
+                    // Duration based on irrigation system (simulated)
+                    const duration = '45 mins';
+                    
+                    row.innerHTML = `
+                        <td>${day}</td>
+                        <td>${time}</td>
+                        <td>${duration}</td>
+                        <td>${waterPerSession.toLocaleString()} liters</td>
+                    `;
+                    
+                    scheduleBody.appendChild(row);
+                });
             }
             
             // Floating animation for header icons
