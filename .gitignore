@@ -12,7 +12,7 @@ __pycache__/
 
 # TensorFlow / Keras models (big files, don't push to GitHub)
 *.h5
-*.keras
+#*.keras
 checkpoints/
 
 # Logs
