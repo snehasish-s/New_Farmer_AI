@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Yield Prediction</title>
+</head>
+<body>
+  <h1>Yield Prediction</h1>
+  <form id="yieldForm">
+    <label>Rainfall (mm):</label>
+    <input type="number" id="rainfall" step="0.1" required><br><br>
+
+    <label>Temperature (°C):</label>
+    <input type="number" id="temperature" step="0.1" required><br><br>
+
+    <label>Humidity (%):</label>
+    <input type="number" id="humidity" step="0.1" required><br><br>
+
+    <button type="submit">Predict Yield</button>
+  </form>
+
+  <h2 id="yieldResult"></h2>
+
+  <script>
+    document.getElementById("yieldForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+
+      const rainfall = document.getElementById("rainfall").value;
+      const temperature = document.getElementById("temperature").value;
+      const humidity = document.getElementById("humidity").value;
+
+      const response = await fetch("/predict_model2", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ rainfall, temperature, humidity })
+      });
+
+      const data = await response.json();
+
+      if (data.error) {
+        document.getElementById("yieldResult").innerText = "Error: " + data.error;
+      } else {
+        document.getElementById("yieldResult").innerText = "Predicted Yield: " + data.yield;
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crop Health Prediction</title>
+</head>
+<body>
+    <h1>Upload Crop Image</h1>
+    <form id="uploadForm">
+        <input type="file" id="fileInput" name="file" required>
+        <button type="submit">Predict</button>
+    </form>
+
+    <h2>Result:</h2>
+    <pre id="result"></pre> <!-- ✅ use pre block -->
+
+    <script>
+        document.getElementById("uploadForm").addEventListener("submit", async function (e) {
+            e.preventDefault();
+
+            const fileInput = document.getElementById("fileInput");
+            const formData = new FormData();
+            formData.append("file", fileInput.files[0]);
+
+            try {
+                const response = await fetch("/predict_model1", {
+                    method: "POST",
+                    body: formData
+                });
+
+                const data = await response.json();
+                console.log("Server Response:", data); // 🔍 Debug in browser console
+
+                if (data.error) {
+                    document.getElementById("result").innerText = "Error: " + data.error;
+                } else {
+                    document.getElementById("result").innerText =
+                        `Status: ${data.status}\nDisease: ${data.label}\nAccuracy: ${data.accuracy}`;
+                }
+            } catch (err) {
+                document.getElementById("result").innerText = "Fetch error: " + err;
+            }
+        });
+    </script>
+</body>
+</html>
