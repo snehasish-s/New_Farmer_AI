@@ -1,3 +1,4 @@
+import random
 from flask import Flask, render_template, request, jsonify
 import tensorflow as tf
 import numpy as np
@@ -115,6 +116,28 @@ def predict_model2():
     except Exception as e:
         return jsonify({"error": str(e)})
 
+
+@app.route("/climate")
+def climate_dashboard():
+    # Example weather data (replace with API call later)
+    weather = {
+        "rainfall": random.randint(20, 300),   # mm
+        "avg_rainfall": 120,
+        "temperature": random.randint(20, 38), # °C
+    }
+    # Example NDVI value (0 = poor, 1 = healthy)
+    ndvi = round(random.uniform(0.1, 0.8), 2)
+
+    # Analyze climate
+    alerts = []
+    if weather["rainfall"] < 50 and ndvi < 0.3:
+        alerts.append("⚠️ Drought risk")
+    if weather["rainfall"] > 200:
+        alerts.append("🌊 Flood risk")
+    if abs(weather["rainfall"] - weather["avg_rainfall"]) > 100:
+        alerts.append("🌦️ Erratic rainfall")
+
+    return render_template("climate.html", weather=weather, ndvi=ndvi, alerts=alerts)
 # ==============================
 # Run Flask
 # ==============================
